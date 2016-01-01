@@ -1,6 +1,6 @@
 'use strict';
 
-const TRIANGLE_SIZE = 50;  // pixels
+const TRIANGLE_SIZE = 20;  // pixels
 const TRIANGLE_INSET = 3;  // pixels
 
 class HexGrid {
@@ -12,8 +12,6 @@ class HexGrid {
     });
     this._layer = new Konva.Layer();
     this._stage.add(this._layer);
-    //  const canvas = document.getElementById(canvasName);
-    // this._ctx = canvas.getContext('2d');
   }
 
   getRandomInt(min, max) {
@@ -55,10 +53,11 @@ class HexGrid {
     this.drawTriangle(group, points, r, g, b, a);
   }
 
-  drawSlice(wedges) {
+  drawSlice(wedges, rotation) {
     let group = new Konva.Group({
-      x: 100,
-      y: 50,
+      x: 250,
+      y: 250,
+      rotation: rotation,
     });
     for (let col = 0; col < wedges; col++) {
       const rows = wedges - col;
@@ -80,5 +79,7 @@ class HexGrid {
 
 function draw() {
   let hex = new HexGrid('container')
-  hex.drawSlice(3);
+  for (let i = 0; i < 6; i++) {
+    hex.drawSlice(10, 0 + 60 * i);
+  }
 }
